@@ -8,7 +8,7 @@ This repo deploys [Hollo](https://github.com/fedify-dev/hollo), the federated si
 
 | Service | Source | Notes |
 |---|---|---|
-| Hollo | this repo (`Dockerfile`) | Hollo **0.9.25**, official image `ghcr.io/fedify-dev/hollo:0.9.25` pinned by digest. Public, port 3000, health check `/nodeinfo/2.1`. Volume at `/var/lib/hollo` for media |
+| Hollo | this repo (`Dockerfile`) | Hollo **0.9.25**, official image `ghcr.io/fedify-dev/hollo:0.9.25` pinned by digest. Public, port 3000, health check `/login` (answers without a login and checks the database). Volume at `/var/lib/hollo` for media |
 | Postgres | Railway Postgres | Accounts, posts, followers, timelines, sessions and the federation queue |
 
 The repo adds only `railway-start.sh`. It turns on `BEHIND_PROXY` (Railway's edge terminates TLS), stores media on the volume (`DRIVE_DISK=fs`, `FS_STORAGE_PATH=/var/lib/hollo`, served by Hollo under `/assets/`) and sets `STORAGE_URL_BASE` to the service's Railway domain. You don't need an S3 bucket.
